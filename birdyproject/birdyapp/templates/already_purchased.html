@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container mt-5 text-center">
-    <h2 class="text-warning">⚠️ Already Purchased</h2>
+    <h2 class="text-warning"> Already Purchased</h2>
     <p>You have already bought this bird: <strong>{{ bird.bird_type }}</strong></p>
     <a href="{% url 'product_list' %}" class="btn btn-info mt-3">Back to Bird List</a>
 </div>

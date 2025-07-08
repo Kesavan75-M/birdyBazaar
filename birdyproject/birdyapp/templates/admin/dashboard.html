@@ -6,7 +6,7 @@
 </head>
 <body class="bg-light">
 
-<!-- 🔴 Logout Button -->
+<!-- Logout Button -->
 <div class="text-end mb-3 me-3 mt-3">
     <a href="{% url 'admin_logout' %}" class="btn btn-danger">Logout</a>
 </div>
@@ -14,18 +14,18 @@
 <div class="container mt-5">
     <h2 class="text-center mb-4">Welcome, Admin 🎉</h2>
 
-    <!-- 🐦 Add Bird Button -->
+    <!-- Add Bird Button -->
     <div class="text-start mb-4">
         <a href="{% url 'admin_add_bird' %}" class="btn btn-success">➕ Add New Bird</a>
     </div>
 
-    <!-- 🧑‍💼 Add Customer & Vendor Buttons -->
+    <!--  Add Customer & Vendor Buttons -->
     <div class="mb-3 d-flex gap-2">
         <a href="{% url 'admin_add_customer' %}" class="btn btn-info">➕ Add Customer</a>
         <a href="{% url 'admin_add_vendor' %}" class="btn btn-info">➕ Add Vendor</a>
     </div>
 
-    <!-- 🧍 Customer Table -->
+    <!-- Customer Table -->
     <h4>Customers</h4>
     <table class="table table-bordered table-striped">
         <thead>
@@ -33,7 +33,7 @@
                 <th>Username</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th>Action</th> <!-- ✅ Added -->
+                <th>Action</th> 
             </tr>
         </thead>
         <tbody>
@@ -56,7 +56,7 @@
         </tbody>
     </table>
 
-    <!-- 👨‍🌾 Vendor Table -->
+    <!-- Vendor Table -->
     <h4 class="mt-5">Vendors</h4>
     <table class="table table-bordered table-striped">
         <thead>
@@ -64,7 +64,7 @@
                 <th>Username</th>
                 <th>Email</th>
                 <th>Phone</th>
-                <th>Action</th> <!-- ✅ Added -->
+                <th>Action</th> 
             </tr>
         </thead>
         <tbody>
@@ -87,7 +87,7 @@
         </tbody>
     </table>
 
-    <!-- 🐦 Bird Products Table -->
+    <!--  Bird Products Table -->
     <h4 class="mt-5">Bird Products</h4>
     <table class="table table-bordered table-striped table-hover">
         <thead>
@@ -149,7 +149,7 @@
                     {% endif %}
                 </td>
 
-                <!-- ✅ Edit & Delete Buttons -->
+                <!-- Edit & Delete Buttons -->
                 <td>
                     <a href="{% url 'admin_edit_bird' bird.id %}" class="btn btn-sm btn-primary">Edit</a>
                     <a href="{% url 'admin_delete_bird' bird.id %}" class="btn btn-sm btn-danger ms-2"

@@ -45,11 +45,11 @@ def login_view(request):
             return redirect('vendor_signup_form' if action == "signup" else "vendor_login_form")
         elif user_type == "admin":
             if action == "login":
-                return redirect("admin_login_form")  # ✅ FIXED
+                return redirect("admin_login_form")  
             else:
-                messages.error(request, "❌ Admin cannot sign up.")
+                messages.error(request, " Admin cannot sign up.")
         else:
-            messages.error(request, "⚠️ Please select a valid user type.")
+            messages.error(request, " Please select a valid user type.")
 
     return render(request, 'login.html')
 
@@ -95,9 +95,9 @@ def login_view(request):
             if action == "login":
                 return redirect("admin_login_form")
             else:
-                messages.error(request, "❌ Admin cannot sign up.")
+                messages.error(request, "Admin cannot sign up.")
         else:
-            messages.error(request, "⚠️ Please select a valid user type.")
+            messages.error(request, "Please select a valid user type.")
 
     return render(request, 'login.html')
 
@@ -357,7 +357,7 @@ def vendor_upload_bird_view(request):
             father_image=father_image,
             father_video=father_video,
         )
-        messages.success(request, "✅ Bird uploaded successfully!")
+        messages.success(request, " Bird uploaded successfully!")
         return redirect('vendor_dashboard')
 
     return render(request, 'vendor/upload.html')
