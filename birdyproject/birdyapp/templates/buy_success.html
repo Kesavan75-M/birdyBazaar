@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5 text-center">
+    <h2 class="text-success">🎉 Purchase Successful!</h2>
+    <p>You have purchased <strong>{{ bird.bird_type }}</strong> (Color: {{ bird.niram }})</p>
+    <a href="{% url 'customer_product_list' %}" class="btn btn-primary mt-3">⬅️ Back to Products</a>
+</div>
+{% endblock %}

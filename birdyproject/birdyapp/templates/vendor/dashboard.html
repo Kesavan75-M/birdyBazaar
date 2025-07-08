@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vendor Dashboard</title>
+</head>
+<body>
+    <h2>Welcome Vendor</h2>
+
+    <a href="{% url 'vendor_upload' %}">Upload New Bird</a>
+
+    <h3>Your Uploaded Birds</h3>
+    {% for bird in products %}
+        <div style="border:1px solid black; margin:10px; padding:10px;">
+            <p>Bird Type: {{ bird.bird_type }}</p>
+            <p>Niram: {{ bird.niram }}</p>
+            <p>Weight: {{ bird.weight }}</p>
+            <p>Age: {{ bird.age }}</p>
+            <p>Price: ₹{{ bird.price }}</p>
+
+            <img src="{{ bird.image.url }}" width="150" />
+
+            {% if bird.video %}
+            <video width="250" controls>
+                <source src="{{ bird.video.url }}" type="video/mp4">
+            </video>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    {% if messages %}
+    {% for message in messages %}
+        <p style="color: green; font-weight: bold;">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+</body>
+</html>

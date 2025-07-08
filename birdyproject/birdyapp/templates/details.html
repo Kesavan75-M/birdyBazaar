@@ -1,0 +1,17 @@
+<form method="POST">
+    {%  csrf_token %}
+    <label for="username">UserName</label>
+    <input type="text" name='username' required placeholder="UserName">
+    <br><br>
+    <label for="phonenumber">PhoneNumber</label>
+    <input type="number" name="phonenumber" required placeholder="PhoneNumber"><br><br>
+    <label for="email">Email</label>
+    <input type="email" name="email" required placeholder="EnterYourMail">
+    <br>
+    <br>
+    <label for="password">password</label>
+    <input type="password" name="password" required placeholder="EnterYourPassword">
+    <br>
+    <br>
+    <button type="submit">Submit</button>
+</form>

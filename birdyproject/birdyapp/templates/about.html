@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+<!-- Hero Section with Image -->
+<div class="container-fluid p-0">
+    <img src="{% static 'images/images7.jpg' %}" alt="Birds at BirdyBazaar"
+         class="img-fluid w-100" style="max-height: 90vh; object-fit: cover;">
+</div>
+
+<!-- Info Section -->
+<div class="container my-5">
+    <h2 class="text-center fw-bold mb-4">Welcome to BirdyBazaar</h2>
+    <p class="lead text-center">
+        At <strong>BirdyBazaar</strong>, we take pride in offering a wide variety of birds — from colorful roosters and charming hens to playful chicks and more. 
+        Whether you're a vendor looking to reach genuine customers or a buyer searching for healthy, ethically raised birds, we’ve got you covered.
+    </p>
+    <p class="text-center">
+        Our mission is to create a trusted digital platform where tradition meets technology. With a commitment to quality, care, and customer satisfaction, BirdyBazaar is more than a marketplace — it’s a thriving community for poultry lovers and farm families across the country.
+    </p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard - Customers</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<!-- 🔴 Logout Button -->
+<div class="text-end mb-3 me-3 mt-3">
+    <a href="{% url 'admin_logout' %}" class="btn btn-danger">Logout</a>
+</div>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Welcome, Admin 🎉</h2>
+
+    <!-- 🐦 Add Bird Button -->
+    <div class="text-start mb-4">
+        <a href="{% url 'admin_add_bird' %}" class="btn btn-success">➕ Add New Bird</a>
+    </div>
+
+    <!-- 🧑‍💼 Add Customer & Vendor Buttons -->
+    <div class="mb-3 d-flex gap-2">
+        <a href="{% url 'admin_add_customer' %}" class="btn btn-info">➕ Add Customer</a>
+        <a href="{% url 'admin_add_vendor' %}" class="btn btn-info">➕ Add Vendor</a>
+    </div>
+
+    <!-- 🧍 Customer Table -->
+    <h4>Customers</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Action</th> <!-- ✅ Added -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+            <tr>
+                <td>{{ customer.username }}</td>
+                <td>{{ customer.email }}</td>
+                <td>{{ customer.phone }}</td>
+                <td>
+                    <a href="{% url 'admin_edit_customer' customer.id %}" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="{% url 'admin_delete_customer' customer.id %}" class="btn btn-sm btn-danger"
+                       onclick="return confirm('Delete this customer?')">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">No customers found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- 👨‍🌾 Vendor Table -->
+    <h4 class="mt-5">Vendors</h4>
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Action</th> <!-- ✅ Added -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for vendor in vendors %}
+            <tr>
+                <td>{{ vendor.username }}</td>
+                <td>{{ vendor.email }}</td>
+                <td>{{ vendor.phone }}</td>
+                <td>
+                    <a href="{% url 'admin_edit_vendor' vendor.id %}" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="{% url 'admin_delete_vendor' vendor.id %}" class="btn btn-sm btn-danger"
+                       onclick="return confirm('Delete this vendor?')">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">No vendors found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- 🐦 Bird Products Table -->
+    <h4 class="mt-5">Bird Products</h4>
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Vendor</th>
+                <th>Bird Type</th>
+                <th>Niram</th>
+                <th>Weight</th>
+                <th>Age</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Video</th>
+                <th>Father Image</th>
+                <th>Father Video</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for bird in birds %}
+            <tr>
+                <td>{{ bird.id }}</td>
+                <td>{{ bird.vendor.username }}</td>
+                <td>{{ bird.get_bird_type_display }}</td>
+                <td>{{ bird.niram }}</td>
+                <td>{{ bird.weight }}</td>
+                <td>{{ bird.age }}</td>
+                <td>₹{{ bird.price }}</td>
+
+                <td>
+                    {% if bird.image %}
+                        <img src="{{ bird.image.url }}" width="60" height="60">
+                    {% else %}
+                        No Image
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if bird.video %}
+                        <a href="{{ bird.video.url }}" target="_blank">Play</a>
+                    {% else %}
+                        No Video
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if bird.father_image %}
+                        <img src="{{ bird.father_image.url }}" width="60" height="60">
+                    {% else %}
+                        No Image
+                    {% endif %}
+                </td>
+
+                <td>
+                    {% if bird.father_video %}
+                        <a href="{{ bird.father_video.url }}" target="_blank">Play</a>
+                    {% else %}
+                        No Video
+                    {% endif %}
+                </td>
+
+                <!-- ✅ Edit & Delete Buttons -->
+                <td>
+                    <a href="{% url 'admin_edit_bird' bird.id %}" class="btn btn-sm btn-primary">Edit</a>
+                    <a href="{% url 'admin_delete_bird' bird.id %}" class="btn btn-sm btn-danger ms-2"
+                       onclick="return confirm('Are you sure you want to delete this bird?')">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="12" class="text-center">No bird products found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

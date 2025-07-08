@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Admin: Upload Bird Product</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="mb-2"><input class="form-control" name="bird_type" placeholder="Bird Type (rooster/hen/chick)" required></div>
+        <div class="mb-2"><input class="form-control" name="niram" placeholder="Niram" required></div>
+        <div class="mb-2"><input class="form-control" name="weight" placeholder="Weight" required></div>
+        <div class="mb-2"><input class="form-control" name="age" placeholder="Age" required></div>
+        <div class="mb-2"><input class="form-control" name="price" placeholder="Price" type="number" step="0.01" required></div>
+        <div class="mb-2">Image: <input class="form-control" type="file" name="image" required></div>
+        <div class="mb-2">Video: <input class="form-control" type="file" name="video"></div>
+        <div class="mb-2">Father Image: <input class="form-control" type="file" name="father_image" required></div>
+        <div class="mb-2">Father Video: <input class="form-control" type="file" name="father_video"></div>
+        <button class="btn btn-success">Upload</button>
+    </form>
+</div>
+{% endblock %}

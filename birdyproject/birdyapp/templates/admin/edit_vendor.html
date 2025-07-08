@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <h2>Edit Vendor</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <input name="username" class="form-control mb-2" placeholder="Username" value="{{ vendor.username }}">
+        <input name="email" class="form-control mb-2" placeholder="Email" value="{{ vendor.email }}">
+        <input name="phone" class="form-control mb-2" placeholder="Phone" value="{{ vendor.phone }}">
+        <input name="password" class="form-control mb-2" placeholder="Password" value="{{ vendor.password }}">
+        <button class="btn btn-success">Update</button>
+    </form>
+</div>
+{% endblock %}

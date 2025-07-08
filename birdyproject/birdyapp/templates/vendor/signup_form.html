@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Include Bootstrap (only if not already in base.html) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    body {
+        background: linear-gradient(to right, #e0f7fa, #f0f4ff);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .signup-card {
+        max-width: 500px;
+        margin: auto;
+        margin-top: 60px;
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        animation: slideUp 0.8s ease-in-out;
+    }
+
+    @keyframes slideUp {
+        0% {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .form-label {
+        font-weight: 600;
+    }
+
+    .btn-success {
+        transition: 0.3s ease;
+        font-weight: 600;
+    }
+
+    .btn-success:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<!-- Heading Section -->
+<div class="text-center mt-5 mb-3">
+    <h1 class="fw-bold text-dark">Vendor Signup - <span class="text-success">BirdyBazaar</span> 🐦</h1>
+    <p class="text-muted">Create your vendor account to start selling birds</p>
+</div>
+
+<!-- Signup Card Form -->
+<div class="signup-card p-4">
+    <h4 class="text-center text-success mb-4 fw-semibold">Vendor Registration</h4>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" name="username" class="form-control border-success" placeholder="Enter your name" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" class="form-control border-success" placeholder="Enter your email" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="number" name="phone" class="form-control border-success" placeholder="Enter your phone number" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" name="password" class="form-control border-success" placeholder="Enter a strong password" required>
+        </div>
+
+        <div class="d-grid">
+            <button type="submit" class="btn btn-success">Signup</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Bird Product</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <h2>Edit Bird - ID {{ bird.id }}</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label>Bird Type</label>
+            <select name="bird_type" class="form-select">
+                <option value="rooster" {% if bird.bird_type == 'rooster' %}selected{% endif %}>Rooster</option>
+                <option value="hen" {% if bird.bird_type == 'hen' %}selected{% endif %}>Hen</option>
+                <option value="chick" {% if bird.bird_type == 'chick' %}selected{% endif %}>Chick</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label>Niram</label>
+            <input type="text" name="niram" class="form-control" value="{{ bird.niram }}">
+        </div>
+
+        <div class="mb-3">
+            <label>Weight</label>
+            <input type="text" name="weight" class="form-control" value="{{ bird.weight }}">
+        </div>
+
+        <div class="mb-3">
+            <label>Age</label>
+            <input type="text" name="age" class="form-control" value="{{ bird.age }}">
+        </div>
+
+        <div class="mb-3">
+            <label>Price</label>
+            <input type="number" name="price" class="form-control" step="0.01" value="{{ bird.price }}">
+        </div>
+
+        <!-- Image -->
+        <div class="mb-3">
+            <label>Current Image:</label><br>
+            {% if bird.image %}
+                <img src="{{ bird.image.url }}" width="80">
+            {% endif %}
+            <input type="file" name="image" class="form-control mt-2">
+        </div>
+
+        <!-- Video -->
+        <div class="mb-3">
+            <label>Current Video:</label><br>
+            {% if bird.video %}
+                <a href="{{ bird.video.url }}" target="_blank">View</a>
+            {% endif %}
+            <input type="file" name="video" class="form-control mt-2">
+        </div>
+
+        <!-- Father Image -->
+        <div class="mb-3">
+            <label>Father Image:</label><br>
+            {% if bird.father_image %}
+                <img src="{{ bird.father_image.url }}" width="80">
+            {% endif %}
+            <input type="file" name="father_image" class="form-control mt-2">
+        </div>
+
+        <!-- Father Video -->
+        <div class="mb-3">
+            <label>Father Video:</label><br>
+            {% if bird.father_video %}
+                <a href="{{ bird.father_video.url }}" target="_blank">View</a>
+            {% endif %}
+            <input type="file" name="father_video" class="form-control mt-2">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update Bird</button>
+        <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+</body>
+</html>
