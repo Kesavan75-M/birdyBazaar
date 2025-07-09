@@ -64,10 +64,18 @@
         </div>
 
         <!-- You can set vendor manually for now -->
-        <div class="mb-3">
-            <label class="form-label">Vendor ID</label>
-            <input type="number" name="vendor_id" class="form-control" required>
-        </div>
+       <div class="mb-3">
+    <label class="form-label">Select Vendor</label>
+    <a href="{% url 'admin_add_vendor' %}" class="btn btn-sm btn-outline-primary mb-2">+ Add New Vendor</a>
+
+    <select name="vendor_id" class="form-select" required>
+        <option value="">-- Select Vendor --</option>
+        {% for vendor in vendors %}
+            <option value="{{ vendor.id }}">{{ vendor.username }}</option>
+        {% endfor %}
+    </select>
+</div>
+
 
         <button type="submit" class="btn btn-success">Add Bird</button>
         <a href="{% url 'admin_dashboard' %}" class="btn btn-secondary">Cancel</a>

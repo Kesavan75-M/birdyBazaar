@@ -131,7 +131,11 @@ def admin_logout_view(request):
     request.session.flush()
     return redirect('admin_login_form')
 
-# Bird CRUD
+
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
+from .models import Vendor, BirdProduct
+
 def admin_add_bird_view(request):
     if not request.session.get('admin_logged_in'):
         return redirect('admin_login_form')
@@ -142,8 +146,19 @@ def admin_add_bird_view(request):
         weight = request.POST.get("weight")
         age = request.POST.get("age")
         price = request.POST.get("price")
-        vendor = Vendor.objects.get(id=request.POST.get("vendor_id"))
+        vendor_id = request.POST.get("vendor_id")
 
+        print("Vendor ID from form:", vendor_id)
+
+        # Check if vendor_id is missing or invalid
+        if not vendor_id or not vendor_id.isdigit():
+            messages.error(request, "Invalid or missing vendor ID.")
+            return redirect("admin_add_bird")
+
+        # Fetch vendor safely
+        vendor = get_object_or_404(Vendor, id=int(vendor_id))
+
+        # Create and save BirdProduct
         BirdProduct.objects.create(
             vendor=vendor,
             bird_type=bird_type,
@@ -156,9 +171,15 @@ def admin_add_bird_view(request):
             father_image=request.FILES.get("father_image"),
             father_video=request.FILES.get("father_video")
         )
+
+        messages.success(request, "Bird added successfully!")
         return redirect("admin_dashboard")
 
-    return render(request, "admin/add_bird.html", {"vendors": Vendor.objects.all()})
+    # For GET requests, show the add bird form with vendors
+    vendors = Vendor.objects.all()
+    return render(request, "admin/add_bird.html", {"vendors": vendors})
+
+
 
 def admin_edit_bird_view(request, bird_id):
     bird = get_object_or_404(BirdProduct, id=bird_id)
